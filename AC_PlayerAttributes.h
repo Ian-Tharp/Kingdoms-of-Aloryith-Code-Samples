@@ -21,7 +21,6 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-
 	//Main Attribute Stats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Main Stats", meta = (ClampMin = 0))
 		int32 CurrentHealth = 100;
@@ -240,6 +239,5 @@ public:
 		void SubtractProficiency(int32 Amount);
 
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
-		void CalculateIncomingDamage(float Amount);
-	
+		void CalculateIncomingDamage(float Amount);	
 };
