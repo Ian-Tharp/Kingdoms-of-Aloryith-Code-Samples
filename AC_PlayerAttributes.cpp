@@ -1,15 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "AC_PlayerAttributes.h"
 
 // Sets default values for this component's properties
 UAC_PlayerAttributes::UAC_PlayerAttributes()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
 	// ...
 	//SetIsReplicatedByDefault(true);
 }
@@ -18,9 +12,6 @@ UAC_PlayerAttributes::UAC_PlayerAttributes()
 void UAC_PlayerAttributes::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
-	
 }
 
 
@@ -28,8 +19,6 @@ void UAC_PlayerAttributes::BeginPlay()
 void UAC_PlayerAttributes::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 
 //Calculating how much damage the player should take
@@ -37,11 +26,8 @@ void UAC_PlayerAttributes::CalculateIncomingDamage(float Amount) {
 	
 }
 
-
-
-
 //Adding Main Player Attributes
-void UAC_PlayerAttributes::AddStrength(int32 Amount) {
+void UAC_PlayerAttributes::AddStrength(int32 Amount) {	//Add Strength
 	Strength += Amount;
 	MeleeAttackPower += Amount;
 	MeleeHitChance += Amount * 0.1f;
@@ -50,7 +36,7 @@ void UAC_PlayerAttributes::AddStrength(int32 Amount) {
 	ParryChance += Amount / 200.0f;
 	BlockChance += Amount / 200.0f;
 }
-void UAC_PlayerAttributes::AddAgility(int32 Amount) {
+void UAC_PlayerAttributes::AddAgility(int32 Amount) {	//Add Agility
 	Agility += Amount;
 	MeleeAttackPower += Amount / 2;
 	MeleeHitChance += Amount * 0.03f;
@@ -61,13 +47,13 @@ void UAC_PlayerAttributes::AddAgility(int32 Amount) {
 	DodgeChance += Amount / 200.0f;
 	Haste += Amount / 250.0f;
 }
-void UAC_PlayerAttributes::AddEndurance(int32 Amount) {
+void UAC_PlayerAttributes::AddEndurance(int32 Amount) {	//Add Endurance
 	Endurance += Amount;
 	CurrentHealth += Amount * 10;
 	MaxHealth += Amount * 10;
 	Armor += Amount * 2;
 }
-void UAC_PlayerAttributes::AddIntellect(int32 Amount) {
+void UAC_PlayerAttributes::AddIntellect(int32 Amount) {	//Add Intellect
 	Intellect += Amount;
 	SpellPower += Amount;
 	SpellHitChance += Amount * 0.1f;
@@ -75,19 +61,19 @@ void UAC_PlayerAttributes::AddIntellect(int32 Amount) {
 	SpellPenetration += Amount * 0.01f;
 	Proficiency += Amount;
 }
-void UAC_PlayerAttributes::AddWisdom(int32 Amount) {
+void UAC_PlayerAttributes::AddWisdom(int32 Amount) {	//Add Wisdom
 	Wisdom += Amount;
 	SpellPower += Amount / 2;
 	SpellHitChance += Amount * 0.05f;
 	SpellCriticalChance += Amount * 0.01f;
 	Haste += Amount / 100.0f;
 }
-void UAC_PlayerAttributes::AddCharisma(int32 Amount) {
+void UAC_PlayerAttributes::AddCharisma(int32 Amount) {	//Add Charisma
 	Charisma += Amount;
 	Devotion += Amount * 2;
 }
-void UAC_PlayerAttributes::AddArmor(int32 Amount) { Armor += Amount; }
-void UAC_PlayerAttributes::AddAllMainStats(int32 Amount) {
+void UAC_PlayerAttributes::AddArmor(int32 Amount) { Armor += Amount; }	//Add Armor
+void UAC_PlayerAttributes::AddAllMainStats(int32 Amount) {		//Add All Stats
 	AddStrength(Amount);
 	AddAgility(Amount);
 	AddEndurance(Amount);
@@ -97,7 +83,7 @@ void UAC_PlayerAttributes::AddAllMainStats(int32 Amount) {
 }
 
 //Subtracting Main Player Attributes
-void UAC_PlayerAttributes::SubtractStrength(int32 Amount) {
+void UAC_PlayerAttributes::SubtractStrength(int32 Amount) {	//Subtract Strength
 	Strength -= Amount;
 	MeleeAttackPower -= Amount;
 	MeleeHitChance -= Amount * 0.1f;
@@ -105,7 +91,7 @@ void UAC_PlayerAttributes::SubtractStrength(int32 Amount) {
 	ParryChance -= Amount / 200.0f;
 	BlockChance -= Amount / 200.0f;
 }
-void UAC_PlayerAttributes::SubtractAgility(int32 Amount) {
+void UAC_PlayerAttributes::SubtractAgility(int32 Amount) {	//Subtract Agility
 	Agility -= Amount;
 	MeleeAttackPower -= Amount / 2;
 	MeleeHitChance -= Amount * 0.05f;
@@ -116,13 +102,13 @@ void UAC_PlayerAttributes::SubtractAgility(int32 Amount) {
 	DodgeChance -= Amount / 200.0f;
 	Haste -= Amount / 250.0f;
 }
-void UAC_PlayerAttributes::SubtractEndurance(int32 Amount) {
+void UAC_PlayerAttributes::SubtractEndurance(int32 Amount) {	//Subtract Endurance
 	Endurance -= Amount;
 	CurrentHealth -= Amount * 10;
 	MaxHealth -= Amount * 10;
 	Armor -= Amount * 2;
 }
-void UAC_PlayerAttributes::SubtractIntellect(int32 Amount) {
+void UAC_PlayerAttributes::SubtractIntellect(int32 Amount) {	//Subtract Intellect
 	Intellect -= Amount;
 	SpellPower -= Amount;
 	SpellHitChance -= Amount * 0.1f;
@@ -130,19 +116,19 @@ void UAC_PlayerAttributes::SubtractIntellect(int32 Amount) {
 	SpellPenetration -= Amount * 0.01f;
 	Proficiency -= Amount;
 }
-void UAC_PlayerAttributes::SubtractWisdom(int32 Amount) {
+void UAC_PlayerAttributes::SubtractWisdom(int32 Amount) {	//Subtract Wisdom
 	Wisdom -= Amount;
 	SpellPower -= Amount / 2;
 	SpellHitChance -= Amount * 0.05f;
 	SpellCriticalChance -= Amount * 0.01f;
 	Haste -= Amount / 100.0f;
 }
-void UAC_PlayerAttributes::SubtractCharisma(int32 Amount) {
+void UAC_PlayerAttributes::SubtractCharisma(int32 Amount) {	//Subtract Charisma
 	Charisma -= Amount;
 	Devotion -= Amount * 2;
 }
-void UAC_PlayerAttributes::SubtractArmor(int32 Amount) { Armor -= Amount; }
-void UAC_PlayerAttributes::SubtractAllMainStats(int32 Amount) {
+void UAC_PlayerAttributes::SubtractArmor(int32 Amount) { Armor -= Amount; }	//Subtract Armor
+void UAC_PlayerAttributes::SubtractAllMainStats(int32 Amount) {			//Subtract All Stats
 	SubtractStrength(Amount);
 	SubtractAgility(Amount);
 	SubtractEndurance(Amount);
@@ -205,4 +191,3 @@ void UAC_PlayerAttributes::AddDevotion(int32 Amount) { Devotion += Amount; }
 void UAC_PlayerAttributes::AddProficiency(int32 Amount) { Proficiency += Amount; }
 void UAC_PlayerAttributes::SubtractDevotion(int32 Amount) { Devotion -= Amount; }
 void UAC_PlayerAttributes::SubtractProficiency(int32 Amount) { Proficiency -= Amount; }
-
