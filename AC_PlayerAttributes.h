@@ -21,10 +21,11 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+
 	//Main Attribute Stats
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Main Stats", meta = (ClampMin = 0))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health", meta = (ClampMin = 0))
 		int32 CurrentHealth = 100;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Main Stats", meta = (ClampMin = 0))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health", meta = (ClampMin = 0))
 		int32 MaxHealth = 100;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Main Stats", meta = (ClampMin = 0))
 		int32 CurrentResource = 0;
@@ -44,6 +45,8 @@ public:
 		int32 Charisma = 1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Main Stats", meta = (ClampMin = 0))
 		int32 Armor = 1;
+	UPROPERTY(BlueprintReadWrite, Category = "Health")
+		bool isDead = false;
 	
 	//Combat and Calculation Stats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
@@ -238,6 +241,16 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Misc Stats")
 		void SubtractProficiency(int32 Amount);
 
+	//Player Health Functions
+	UFUNCTION(BlueprintCallable, Category = "Health")
+		void AddCurrentHealth(int32 Amount);
+	UFUNCTION(BlueprintCallable, Category = "Health")
+		void SubtractCurrentHealth(int32 Amount);
+	UFUNCTION(BlueprintCallable, Category = "Health")
+		void IncreaseMaximumHealth(int32 Amount);
+
+	//Combat Call to Take Melee Damage
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
-		void CalculateIncomingDamage(float Amount);	
+		void CalculateIncomingMeleeDamage(float Amount);
+	
 };
