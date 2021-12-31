@@ -13,6 +13,8 @@ public:
 	// Sets default values for this component's properties
 	UAC_PlayerAttributes();
 
+	int32 tempChance = 0;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -31,6 +33,7 @@ public:
 		int32 CurrentResource = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Main Stats", meta = (ClampMin = 0))
 		int32 MaxResource = 0;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Main Stats", meta = (ClampMin = 1))
 		int32 Strength = 1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Main Stats", meta = (ClampMin = 1))
@@ -46,7 +49,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Main Stats", meta = (ClampMin = 0))
 		int32 Armor = 1;
 	UPROPERTY(BlueprintReadWrite, Category = "Health")
-		bool isDead = false;
+		bool bisDead = false;
 	
 	//Combat and Calculation Stats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
@@ -55,32 +58,37 @@ public:
 		int32 RangedAttackPower = 1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
 		int32 SpellPower = 1;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
-		float MeleeHitChance = 75.0f;
+		float MeleeHitChance = 70.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
-		float RangedHitChance = 75.0f;
+		float RangedHitChance = 70.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
-		float SpellHitChance = 75.0f;
+		float SpellHitChance = 70.0f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
-		float MeleeCriticalChance = 8.0f;
+		float MeleeCriticalChance = 5.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
-		float RangedCriticalChance = 8.0f;
+		float RangedCriticalChance = 5.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
-		float SpellCriticalChance = 8.0f;
+		float SpellCriticalChance = 5.0f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
 		float ArmorPenetration = 0.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
 		float SpellPenetration = 0.0f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
-		float DodgeChance = 7.0f;
+		float DodgeChance = 5.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
-		float ParryChance = 7.0f;
+		float ParryChance = 2.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
-		float BlockChance = 7.0f;
+		float BlockChance = 5.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
 		int BlockAmount = 10;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat Stats", meta = (ClampMin = 0))
 		float Haste = 0.0f;
+
 	//Resistances
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resistances")
 		int32 FireResistance = 0;
@@ -94,12 +102,13 @@ public:
 		int32 NatureResistance = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resistances")
 		int32 ArcaneResistance = 0;
+
 	//Miscellaneous Attribute Stats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Misc Stats", meta = (ClampMin = 0))
 		int32 Devotion = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Misc Stats", meta = (ClampMin = 0))
 		int32 Proficiency = 0;
-
+	//-------------------------------------------------------------------------------------------------------------------
 
 	//Functions to Add/Subtract Amounts to Main Attributes
 	UFUNCTION(BlueprintCallable, Category = "Main Stats")
@@ -143,22 +152,26 @@ public:
 		void AddRangedAttackPower(int32 Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddSpellPower(int32 Amount);
+
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddMeleeHitChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddRangedHitChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddSpellHitChance(float Amount);
+
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddMeleeCriticalChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddRangedCriticalChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddSpellCriticalChance(float Amount);
+
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddArmorPenetration(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddSpellPenetration(float Amount);
+
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void AddDodgeChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
@@ -176,22 +189,26 @@ public:
 		void SubtractRangedAttackPower(int32 Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractSpellPower(int32 Amount);
+
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractMeleeHitChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractRangedHitChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractSpellHitChance(float Amount);
+
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractMeleeCriticalChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractRangedCriticalChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractSpellCriticalChance(float Amount);
+
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractArmorPenetration(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractSpellPenetration(float Amount);
+
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
 		void SubtractDodgeChance(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
@@ -241,16 +258,39 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Misc Stats")
 		void SubtractProficiency(int32 Amount);
 
+	//-------------------------------------------------------------------------------------------------------------------
 	//Player Health Functions
 	UFUNCTION(BlueprintCallable, Category = "Health")
 		void AddCurrentHealth(int32 Amount);
 	UFUNCTION(BlueprintCallable, Category = "Health")
 		void SubtractCurrentHealth(int32 Amount);
 	UFUNCTION(BlueprintCallable, Category = "Health")
-		void IncreaseMaximumHealth(int32 Amount);
+		void AddMaximumHealth(int32 Amount);
+	UFUNCTION(BlueprintCallable, Category = "Health")
+		void SubtractMaximumHealth(int32 Amount);
 
-	//Combat Call to Take Melee Damage
-	UFUNCTION(BlueprintCallable, Category = "Combat Stats")
-		void CalculateIncomingMeleeDamage(float Amount);
+	//-------------------------------------------------------------------------------------------------------------------
+	//Combat Call to Calculate Melee Damage
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+		int32 TakeIncomingMeleeDamage(int32 Amount);
+
+	//Combat Call to Calculate Ranged Damage
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+		int32 TakeIncomingRangedDamage(int32 Amount);
+
+	//Combat Call to Calculate Spell Damage
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+		int32 TakeIncomingSpellDamage(int32 Amount, int MagicType);
+
+	//Hit Chance Functions - Determine if owning player will hit their target
+	bool DetermineSuccessful_MeleeHit();
+	bool DetermineSuccessful_RangedHit();
+	bool DetermineSuccessful_SpellHit();
 	
+	//Parry Chance Function
+	bool DetermineParry();
+	//Dodge Chance Function
+	bool DetermineDodge();
+	//Block Chance Function
+	bool DetermineBlock();
 };
